@@ -12,7 +12,7 @@ COPY /build/server.xml /usr/local/tomcat/conf/
 ADD /build/DbTest.war /usr/local/tomcat/webapps/DbTest.war
 
 #Add the web.xml file to render tomcat root as the application
-#ADD /build/web.xml /usr/local/tomcat/webapps/DbTest/WEB-INF/
+ADD /build/web.xml /usr/local/tomcat/webapps/DbTest/WEB-INF/
 
 #starting up and running the tomcat service
 WORKDIR /usr/local/tomcat/bin
