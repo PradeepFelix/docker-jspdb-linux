@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: docker-jsp-db
+spec:
+  type: NodePort
+  ports:
+  - port: 8588
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: docker-jsp-db
+status:
+  loadBalancer: {}
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: docker-jsp-db
+  name: docker-jsp-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: docker-jsp-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: docker-sample-jsp
+        app: docker-sample-jsp
+    spec:
+      containers:
+      - image: pradeepflx/docker-sample-jsp
+        imagePullPolicy: Always
+        name: docker-sample-jsp
+        resources: {}
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+status: {}

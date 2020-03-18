@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-jspdb
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /hello1
+          backend:
+            serviceName: docker-sample-jsp
+            servicePort: 8788
+        - path: /hello2
+          backend:
+            serviceName: docker-sample-jsp
+            servicePort: 8080
+        - path: /hello3
+          backend:
+            serviceName: docker-sample-jsp
+            servicePort: 80
+        
